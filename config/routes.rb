@@ -1,9 +1,15 @@
 SampleApp::Application.routes.draw do
  
+   
+  get "users/new"
+
+  #’/about’ et le route vers l'action about du contrôleur Pages 
+  # Avant, c'était plus explicite : nous utilisions get ’pages/about’ pour atteindre le même endroit, mais /about est plus succint
+  # De cette maniere dans les vues il suffit d'utiliser about_path => '/about' ,about_url  => 'http://localhost:3000/about'
    match '/contact', :to => 'pages#contact'
    match '/about',   :to => 'pages#about'
    match '/help',    :to => 'pages#help'
-
+   match '/signup',  :to => 'users#new'
 
   #  Premier exemple de routes
   # get "pages/home"
@@ -61,7 +67,7 @@ SampleApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'page#home'
+  root :to => 'pages#home'
 
   # See how all your routes lay out with "rake routes"
 

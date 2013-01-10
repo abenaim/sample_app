@@ -1,4 +1,4 @@
-# Page qui execute tous les tests pour le controller Pages : commande a exéecuter : bundle exec rspec/spec
+# Page qui execute tous les tests pour le controller Pages : commande a exécuter : bundle exec rspec/spec
 require 'spec_helper'
 
 describe PagesController do
