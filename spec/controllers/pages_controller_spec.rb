@@ -1,18 +1,27 @@
+# Page qui execute tous les tests pour le controller Pages : commande a exéecuter : bundle exec rspec/spec
 require 'spec_helper'
 
 describe PagesController do
   render_views
 
+  #Avant d'exécuter toutes les test on lance ce code
+  before(:each) do
+    @base_title = "Simple App du Tutoriel Ruby on Rails |"
+  end
+
+
   describe "GET 'home'" do
 
+    #permet de tester l'existance de la page
     it "should be successful" do
       get 'home'
       response.should be_success
     end
-
+    
+    #permet de tester la validité du title de chaque page
      it "should have good title " do 
       get 'home'
-      response.should have_selector("title", :content => "Simple App du Tutoriel Ruby on Rails | Accueil")
+      response.should have_selector("title", :content => @base_title + " Accueil")
     end
 
     it "should"
@@ -25,7 +34,7 @@ describe PagesController do
     end
     it "should have good title " do
       get 'contact'
-      response.should have_selector("title", :content =>"Simple App du Tutoriel Ruby on Rails | Contact")
+      response.should have_selector("title", :content => @base_title + " Contact")
     end
   end
 
@@ -37,7 +46,19 @@ describe PagesController do
 
      it "should have good title " do
       get 'about'
-      response.should have_selector("title", :content =>"Simple App du Tutoriel Ruby on Rails | About")
+      response.should have_selector("title", :content => @base_title + " About")
+    end
+  end
+
+  describe "GET 'help'" do
+    it "should be successful" do
+      get 'help'
+      response.should be_success
+    end
+
+     it "should have good title " do
+      get 'help'
+      response.should have_selector("title", :content => @base_title + " Help")
     end
   end
 

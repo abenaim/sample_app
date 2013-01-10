@@ -1,3 +1,5 @@
+ #Dans cette page toutes les variables crées sont accessibles aux vues
+
 class PagesController < ApplicationController
   def home
   	@titre = "Accueil"
@@ -10,4 +12,11 @@ class PagesController < ApplicationController
    def about
    	@titre = "About"
   end
+
+   def help
+   	@titre = "Help"
+  end
 end
+
+
+
