@@ -1,7 +1,9 @@
 SampleApp::Application.routes.draw do
- 
+  
+ #De cette facon on permet toutes les ecriture que connait l'architecture REST (/users, users/new, users/1 ...)
+ resources :users  # avant il y avait ceci   get "users/new"
    
-  get "users/new"
+
 
   #’/about’ et le route vers l'action about du contrôleur Pages 
   # Avant, c'était plus explicite : nous utilisions get ’pages/about’ pour atteindre le même endroit, mais /about est plus succint

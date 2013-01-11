@@ -23,11 +23,14 @@ end
 gem 'jquery-rails'
 
 group :development do
-	gem 'rspec-rails', '2.5.0'
+	#gem 'rspec-rails', '2.5.0'
+	gem 'rspec-rails', '2.6.1'
+	#gem 'annotate-models', '1.0.4' # permet d'avoir des commentaires sur les modèles (ex :voir model user.rb)
 end
 
 group :test do
-  gem 'rspec', '2.5.0'
+  #gem 'rspec', '2.5.0'
+  gem 'rspec', '2.6'
   gem 'webrat', '0.7.1'
 end
 
@@ -45,4 +48,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+ gem 'debugger'

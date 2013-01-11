@@ -24,7 +24,6 @@ describe PagesController do
       response.should have_selector("title", :content => @base_title + " Accueil")
     end
 
-    it "should"
   end
 
   describe "GET 'contact'" do

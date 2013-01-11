@@ -10,4 +10,8 @@ module ApplicationHelper
       "#{base_titre} | #{@titre}"
     end
   end
+
+  def logo
+  	
+  end 
 end
