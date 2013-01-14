@@ -1,1 +1,17 @@
-<%= @user.nom %>, <%= @user.email %>
+<table class="profile" summary="Information profil">
+  <tr>
+    <td class="main">
+      <h1>
+         <!--Les gravatars sont une façon pratique d'inclure des images de profil utilisateur sans avoir à gérer la difficulté des téléchargement d'images, leur redimensionnement et leur sauvegarde.21 Chaque gravatar est associé à une adresse email, donc le gem Gravatar est fourni avec une méthode d'helper appelée gravatar_image_tag qui prend une adresse mail comme argument : <%= gravatar_image_tag example@railstutorial.org %> -->
+
+  		<!--voir sample_app\app\helpers\users_helpers-->
+        <%= gravatar_for @user %>
+        <%= @user.nom %>
+      </h1>
+    </td>
+    <td class="sidebar round">
+      <strong>Nom</strong> <%= @user.nom %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+    </td>
+  </tr>
+</table>
