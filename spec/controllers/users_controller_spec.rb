@@ -53,6 +53,57 @@ describe UsersController do
   end
 
 
+describe "POST 'create'" do
+
+    describe "Failed" do
+
+      before(:each) do
+        @attr = { :nom => "", :email => "", :password => "", :password_confirmation => "" }
+      end
+
+      it "should not create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should_not change(User, :count) #change : retourne le changement du nombre d'utilisateurs dans la base de données :
+      end
+
+      it "it should have good title" do
+        post :create, :user => @attr
+        response.should have_selector("title", :content => "Inscription")
+      end
+
+      it "should get page 'new'" do
+        post :create, :user => @attr
+        response.should render_template('new')
+      end
+    end
+  
+
+	describe "success" do
+
+      before(:each) do
+        @attr = { :nom => "New User", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar" }
+      end
+
+      it "should create new user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1) # on attend du bloc lamda qu'il change le compte User de 1
+      end
+
+      it "should redirect_to view page user " do
+        post :create, :user => @attr
+        response.should redirect_to(user_path(assigns(:user)))
+      end 
+
+      it "should have a message of welcome" do
+        post :create, :user => @attr
+        flash[:success].should =~ /Bienvenue dans l'Application Exemple/i #permet de faire une comparaison sans etre sensible à la casse
+      end   
+    end
+
+
+  end
 
 
 end

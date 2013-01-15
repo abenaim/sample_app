@@ -30,7 +30,7 @@ before_save :encrypt_password
     encrypted_password == encrypt(password_soumis)
   end
 
- # ici le SELF.auth permet de dire que auhenticate est une méthode de la classe User 
+ # ici le SELF.auth permet de dire que auhenticate est une méthode de la classe User , on peut remplacer self par User.
   def self.authenticate(email, submitted_password)
     user = find_by_email(email)
     return nil  if user.nil?
@@ -41,7 +41,7 @@ before_save :encrypt_password
 private
 	def encrypt_password
 		self.salt = make_salt if new_record?      # en incluant new_record? nous nous assurons que le salt sera créé seulement une fois, à la création de l'utilisateur
-		self.encrypt_password = encrypt(password) # le self ici est obligatoire , il recupere l'objet courant , le 2émé self est facultatif et implicite (self.password)
+		self.encrypted_password = encrypt(password) # le self ici est obligatoire , il recupere l'objet courant , le 2émé self est facultatif et implicite (self.password)
 	end
 
 	def  encrypt(string)

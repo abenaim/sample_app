@@ -43,6 +43,7 @@ module SampleApp
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
+    # Dans le fichier log (log/development.log) les champs password sont remplacé par le mot [FILTERED] pour eviter de les voir en dure : config.filter_parameters += [:password, :code_secret]
     config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.

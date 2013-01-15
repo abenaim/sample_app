@@ -1,0 +1,15 @@
+<!-- La méthode any? est simplement l'opposée de la méthode empty?, retournant true s'il y a au moins un élément et false dans le cas contraire..-->
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+	    <h2>
+	    	<!-- # analyse le chiffre du 1er parametre est renvoie le 2eme parametre au pluriel ou pas : "1 erreur" ou "2 erreurs" -->
+	    	<%= pluralize(@user.errors.count, "erreur")  %> 
+	        ont empêché d'enregistrer votre inscription</h2>
+	    <p>Merci de corriger ces champs :</p>
+	    <ul>
+	    	<% @user.errors.full_messages.each do |msg| %>
+	      		<li><%= msg %></li>
+	    	<% end %>
+	    </ul>
+	 </div>
+<% end %>
