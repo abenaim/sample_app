@@ -3,6 +3,8 @@ require 'spec_helper'
 describe UsersController do
 	render_views
 
+# -------------------------------------- GET SHOW ------------------------------
+
   describe "GET 'show'" do
 
     before(:each) do
@@ -38,6 +40,8 @@ describe UsersController do
   
   end
 
+# -------------------------------------- GET NEW ------------------------------
+
   describe "GET 'new'" do
    
     it "should be successful" do
@@ -50,8 +54,30 @@ describe UsersController do
 		response.should have_selector("title" , :content => "Inscription")
 	end
 
+	it "should have a field nom"
+		get 'new'
+		response.should have_selector("input[nom='user[nom]'][type='text']")
+	end
+
+	it "should have a field email"
+		get 'new'
+		response.should have_selector("input[email='user[email]'][type='text']")
+	end
+
+	it "should have a field password"
+		get 'new'
+		response.should have_selector("input[password='user[password]'][type='password']")
+	end
+
+	it "should have a field password_confirmation"
+		get 'new'
+		response.should have_selector("input[password_confirmation='user[password_confirmation]'][type='password']")
+	end
+
   end
 
+
+# -------------------------------------- POST CREATE ------------------------------
 
 describe "POST 'create'" do
 
@@ -79,27 +105,32 @@ describe "POST 'create'" do
     end
   
 
-	describe "success" do
+  	describe "success" do
 
-      before(:each) do
-        @attr = { :nom => "New User", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar" }
-      end
+        before(:each) do
+          @attr = { :nom => "New User", :email => "user@example.com", :password => "foobar", :password_confirmation => "foobar" }
+        end
 
-      it "should create new user" do
-        lambda do
+        it "should create new user" do
+          lambda do
+            post :create, :user => @attr
+          end.should change(User, :count).by(1) # on attend du bloc lamda qu'il change le compte User de 1
+        end
+
+        it "should redirect_to view page user " do
           post :create, :user => @attr
-        end.should change(User, :count).by(1) # on attend du bloc lamda qu'il change le compte User de 1
-      end
+          response.should redirect_to(user_path(assigns(:user)))
+        end 
 
-      it "should redirect_to view page user " do
-        post :create, :user => @attr
-        response.should redirect_to(user_path(assigns(:user)))
-      end 
+        it "should have a message of welcome" do
+          post :create, :user => @attr
+          flash[:success].should =~ /Bienvenue dans l'Application Exemple/i #permet de faire une comparaison sans etre sensible à la casse
+        end 
 
-      it "should have a message of welcome" do
-        post :create, :user => @attr
-        flash[:success].should =~ /Bienvenue dans l'Application Exemple/i #permet de faire une comparaison sans etre sensible à la casse
-      end   
+        it "should identifier l utilisateur" do
+          post :create, :user => @attr
+          controller.should be_signed_in
+      end  
     end
 
 

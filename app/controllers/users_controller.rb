@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   	# Cette ligne est equivalent : @user = User.new(:nom => "Foo Bar", :email => "foo@invalid",:password => "dude", :password_confirmation => "dude")
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user # une fois apres avoir ajouter l'utilisateur ( le nouveau ) il est logué => il a une session
       flash[:success] = "Bienvenue dans l'Application Exemple!"
       redirect_to user_path(@user)
     else

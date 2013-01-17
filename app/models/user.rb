@@ -37,6 +37,12 @@ before_save :encrypt_password
     return user if user.has_password?(submitted_password)
   end
 
+  def self.authenticate_with_salt(id, cookie_salt)
+    user = find_by_id(id)
+    # le ? s'appelle un operateur ternaire
+    (user && user.salt == cookie_salt) ? user : nil # equivaut à return nil  if user.nil?   return user if user.salt == cookie_salt
+  end
+
 #Correspond à des fonctions de rappel : user.encrypt_password ceci ne fonctionne pas car on est dans la section private
 private
 	def encrypt_password

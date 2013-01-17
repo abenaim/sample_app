@@ -1,9 +1,9 @@
-SampleApp::Application.routes.draw do
-  
- #De cette facon on permet toutes les ecriture que connait l'architecture REST (/users, users/new, users/1 ...)
- resources :users  # avant il y avait ceci   get "users/new"
-   
+SampleApp::Application.routes.draw do  
 
+  #De cette facon on permet toutes les ecriture que connait l'architecture REST (/users, users/new, users/1 ...)
+ resources :users  # avant il y avait ceci   get "users/new"
+ resources :sessions, :only => [:new, :create, :destroy] #ce sont les actions que l'on va avoir pour ce controller
+   
 
   #’/about’ et le route vers l'action about du contrôleur Pages 
   # Avant, c'était plus explicite : nous utilisions get ’pages/about’ pour atteindre le même endroit, mais /about est plus succint
@@ -12,12 +12,15 @@ SampleApp::Application.routes.draw do
    match '/about',   :to => 'pages#about'
    match '/help',    :to => 'pages#help'
    match '/signup',  :to => 'users#new'
+   match '/signin',  :to => 'sessions#new'
+   match '/signout', :to => 'sessions#destroy'
 
   #  Premier exemple de routes
   # get "pages/home"
   # get "pages/contact"
   # get "pages/about"
   # get "pages/help"
+  # get "sessions/new" Cette ligne est généré automatiquement lorsque l'on genere le controller, elle est remplacé par les ressources
 
 
   # The priority is based upon order of creation:

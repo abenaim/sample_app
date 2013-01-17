@@ -1,3 +1,4 @@
+# Teste les liens du layout ( header , footer)
 require 'spec_helper'
 
 describe "LayoutLinks" do
@@ -39,6 +40,35 @@ describe "LayoutLinks" do
     response.should have_selector('title', :content => "Accueil")
     click_link "Inscription"
     response.should have_selector('title', :content => "Inscription")
+  end
+
+  describe "quand pas identifie" do
+    it "Should avoir un lien de connexion" do
+      visit root_path
+      response.should have_selector("a", :href => signin_path, :content => "S'identifier")
+    end
+  end
+
+  describe "quand identifie" do
+
+    before(:each) do
+      @user = Factory(:user)
+      visit signin_path
+      fill_in "Email",    :with => @user.email
+      fill_in "Password", :with => @user.password
+      click_button
+    end
+
+    it "should avoir un lien de deconnxion" do
+      visit root_path
+      response.should have_selector("a", :href => signout_path, :content => "Deconnexion")
+    end
+
+    it "should avoir un lien vers le profil" do
+      visit root_path
+      response.should have_selector("a", :href => user_path(@user), :content => "Profil")
+    end
+
   end
 
 end
