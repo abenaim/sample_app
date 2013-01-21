@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   #nous n'allons enregistrer qu'un mot de passe crypté dans la base de données ; pour le mot de passe, 
   #nous allons introduire la notion d'attribut virtuel (cad un attribut qui ne correspond pas à une colonne de la base de données) en utilisant la méthode attr_accessor
   attr_accessor :password
+  
+  #cela nom permet d'utiliser les colonnes dans les autres pages  (donc on evite de mettre :admin pour que personne est la possibilite de mofier cette var)
   attr_accessible :email, :nom, :password, :password_confirmation
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

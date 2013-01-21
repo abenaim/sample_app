@@ -28,6 +28,22 @@ module SessionsHelper
     	self.current_user = nil
   	end
 
+	# fonction utiliser dans user_controller avec les filtres
+  	def current_user?(user)
+    	user == current_user
+    end
+
+  	# fonction utiliser dans user_controller avec les filtres
+  	def deny_access
+    	redirect_to signin_path, :notice => "Merci de vous identifier pour rejoindre cette page." #equivaut à flash[:notice] = "Merci de vous identifier pour rejoindre cette page."
+  	end
+
+  	# on redirige soit vers la requete URL ( request.fullpath) si elle est rempli sinon on prend celle par defaut
+  	def redirect_back_or(default)
+    	redirect_to(session[:return_to] || default)
+    	clear_return_to
+  	end
+
 	private
 
 		def user_from_remember_token
@@ -40,5 +56,14 @@ module SessionsHelper
 			#ici on dit retourner un tableau de valeurs nulles si cookies.signed[:remember_me] lui-même est nul 
 			cookies.signed[:remember_token] || [nil, nil]
 		end
+
+		def store_location
+      		session[:return_to] = request.fullpath
+    	end
+
+    	def clear_return_to
+      		session[:return_to] = nil
+    	end
+
 
 end

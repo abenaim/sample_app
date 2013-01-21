@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
   	else
   		# Authentifie l'utilisateur et redirige vers la page d'affichage.
   		sign_in user
-  		redirect_to user
+  		# redirect_to user : on utlise plus cette syntaxe on utilise celle ci qui permet de rediriger vers  les bonnes url voir session_helper
+  		redirect_back_or user
   	end
 
   end

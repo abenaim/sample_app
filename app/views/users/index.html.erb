@@ -1,0 +1,16 @@
+<h1>Tous les utilisateurs</h1>
+
+<%= will_paginate %>
+
+<ul class="users">	
+    <!--Ici il ne s'agit pas d'appeler un render partial render 'layouts/user' mais plutot sur une variable user de classe User et dans ce contexte rails recherche automatiquemeent un partial nommé _user.html.erb- et dans ce cas plus la peine de mettre la boucle-->
+    <%= render @users%>	 
+</ul>
+
+<%= will_paginate %>
+	
+   
+<!--
+@users contient le résultat de User.all qui est de classe Array  tandis que will_paginate attend un objet de classe WillPaginate::Collection. Heureusement, c'est justement le type d'objet retourné par la méthode paginate fournie par le gem will_paginate 
+Notez que paginage prend un argument de type tableau associatif (table de hachage) avec une clé :page de valeur égale à la page requise. User.paginate extrait les utilisateurs de la base de donnée en une fois (30 par défaut), en se basant sur le paramètre :page. Ainsi, par exemple, la page 1 sont les utilisateurs 1–30, la page 2 les utilisateurs 31–60, etc.
+-->

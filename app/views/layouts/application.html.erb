@@ -5,7 +5,8 @@
     <title><%= titre %></title>
     <%= csrf_meta_tag %>
     <%= render 'layouts/stylesheets' %>
-  </head>
+    <!-- Pour les popup suppression de user  ,avec :defaults ca pointe vers (public/javacscript) , avec :application point app/assets/javascript-->
+    <%= javascript_include_tag :application %>   </head>
   <body>
     <div class="container">
     	<%= render 'layouts/header' %>

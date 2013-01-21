@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.10'
 gem 'sqlite3'
 gem 'gravatar_image_tag', '1.0.0.pre2'  # pour traiter chaque Gravatar d'utilisateur
+gem 'will_paginate', '3.0.0'  # utile pour la pagination
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,12 +27,14 @@ group :development do
 	#gem 'rspec-rails', '2.5.0'
 	gem 'rspec-rails', '2.6.1' #permet de faire des test unitaires sur notre application
 	#gem 'annotate-models', '1.0.4' # permet d'avoir des commentaires sur les modèles (ex :voir model user.rb)
+	gem 'faker', '0.3.1' # permet d'insere plien de user dans la base au lieu de les taper un a un voir lib/tasks/sample_data.rake 
 end
 
 group :test do
   #gem 'rspec', '2.5.0'
   gem 'rspec', '2.6' 
   gem 'webrat', '0.7.1'
+  #gem 'factory_girl', '1.3.3'
   gem 'factory_girl_rails', '1.0' # utilisateur d'usine ou factory girl :permet de definir un objet utilisateur et de l'inséréer dans notre basse
 end
 

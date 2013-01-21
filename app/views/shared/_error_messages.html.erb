@@ -1,15 +1,33 @@
-<!-- La méthode any? est simplement l'opposée de la méthode empty?, retournant true s'il y a au moins un élément et false dans le cas contraire..-->
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(object.errors.count, "error") %> 
+        prohibited this <%= object.class.to_s.underscore.humanize.downcase %> 
+        from being saved:</h2>
+    <p>There were problems with the following fields:</p>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<!-- La méthode any? est simplement l'opposée de la méthode empty?, retournant true s'il y a au moins un élément et false dans le cas contraire..
+	dans ce cas dans new.html.erb il faut ecrire = render 'shared/error_messages 
+if @user.errors.any? 
 	<div id="error_explanation">
 	    <h2>
-	    	<!-- # analyse le chiffre du 1er parametre est renvoie le 2eme parametre au pluriel ou pas : "1 erreur" ou "2 erreurs" -->
-	    	<%= pluralize(@user.errors.count, "erreur")  %> 
-	        ont empêché d'enregistrer votre inscription</h2>
+	    	analyse le chiffre du 1er parametre est renvoie le 2eme parametre au pluriel ou pas : "1 erreur" ou "2 erreurs" 
+	    	= #pluralize(@user.errors.count, "erreur")   ont empêché d'enregistrer votre inscription</h2>
 	    <p>Merci de corriger ces champs :</p>
 	    <ul>
-	    	<% @user.errors.full_messages.each do |msg| %>
-	      		<li><%= msg %></li>
-	    	<% end %>
+	    	# @user.errors.full_messages.each do |msg| 
+	      		<li><%#= msg %></li>
+	    	#end 
 	    </ul>
 	 </div>
-<% end %>
+ #end
+-->
+
+<!--Ce partial est utiliser dans edit.html.erb -->

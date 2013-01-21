@@ -2,23 +2,23 @@
 
 <!-- méthode helper form_for -->
 <%= form_for(@user) do |f| %>
-<%= render 'shared/error_messages'%> <!-- il s'agit d'un partial-->
+<%= render 'shared/error_messages', :object => f.object %> <!-- il s'agit d'un partial-->
   <div class="field">
-    <%= f.label :nom %><br />
-    <%= f.text_field :nom %>
-  </div>
+      <%= f.label :nom, "Nom" %><br />
+      <%= f.text_field :nom %>
+    </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
+      <%= f.label :email, "Email" %><br />
+      <%= f.text_field :email %>
+   </div>
+   <div class="field">
+      <%= f.label :password, "Password" %><br />
+      <%= f.password_field :password %>
+   </div>
+   <div class="field">
+      <%= f.label :password_confirmation, "Confirmation" %><br />
+      <%= f.password_field :password_confirmation %>
+   </div>
   <div class="actions">
     <%= f.submit "Inscription" %>
   </div>
