@@ -11,3 +11,9 @@ Factory.sequence :email do |n|
 	"person-#{n}example.com"
 end
 
+#consiste à générer des micropost d'usines associé aux users d'ou le micropost.association user
+Factory.define :micropost do |micropost|
+  micropost.content "Foo bar"
+  micropost.association :user
+end
+

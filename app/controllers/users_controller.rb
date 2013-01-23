@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   # filtre : fais appel a méthode correct_ser  
   before_filter :correct_user, :only => [:edit, :update]
   #fitre qui limite l'action destroy qu'au admin
-  before_filter :admin_user,   :only => :destroy
+  before_filter :admin_user,   :only => [:destroy, :new]
+
 
   def new
   	@user = User.new #variable d'instance
@@ -20,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(:page => params[:id])
   	@titre = @user.nom
   end
 
@@ -61,6 +63,7 @@ class UsersController < ApplicationController
   
   private
 
+    # Cette fonction etait initialment ici avant l'utilisation des micropost now elle se trouve dans app/helpers/sessions_helper.rb 
     def authenticate
       deny_access unless signed_in?
     end

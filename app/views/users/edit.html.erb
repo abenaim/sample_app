@@ -1,25 +1,9 @@
 <h1>Edition du profil</h1>
 
 <!-- form_for(@user), Rails utilise la requête POST si @user.new_record? est vrai (true) et la requête PUT si la méthode renvoie false. -->
-<%= form_for(@user) do |f| %>
-	<!--La solution consiste à passer au partiel, en paramètre, un objet correspondant à la variable formulaire f -->
-	<%= render 'shared/error_messages', :object  => f.object %>
-	<div class="field">
-    	<%= f.label :nom, "Nom" %><br />
-    	<%= f.text_field :nom %>
-  	</div>
-	<div class="field">
-	    <%= f.label :email, "Email" %><br />
-	    <%= f.text_field :email %>
-	 </div>
-	 <div class="field">
-	    <%= f.label :password, "Password" %><br />
-	    <%= f.password_field :password %>
-	 </div>
-	 <div class="field">
-	    <%= f.label :password_confirmation, "Confirmation" %><br />
-	    <%= f.password_field :password_confirmation %>
-	 </div>
+<%= form_for(@user) do |f| %>	
+	 <!-- Cette partie est commune pour le new et le edit donc on fait un partial et on envoie en parametre le formumaire -->
+  	 <%= render 'fields' , :f => f  %>
 	 <div class="actions">
 	    <%= f.submit "Update" %>
 	 </div>
@@ -28,5 +12,5 @@
 
 <div>
   <%= gravatar_for @user %>
-  <a href="http://gravatar.com/emails">changer</a>
+  <a href="http://gravatar.com/emails" target="_blank" >changer</a>
 </div>

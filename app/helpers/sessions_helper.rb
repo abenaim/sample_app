@@ -33,8 +33,14 @@ module SessionsHelper
     	user == current_user
     end
 
+	#inialement cette fonction etait dans users_controller mais on la rajoute aussi ici
+	def authenticate
+      deny_access unless signed_in?
+    end
+  	
   	# fonction utiliser dans user_controller avec les filtres
   	def deny_access
+  		store_location
     	redirect_to signin_path, :notice => "Merci de vous identifier pour rejoindre cette page." #equivaut à flash[:notice] = "Merci de vous identifier pour rejoindre cette page."
   	end
 

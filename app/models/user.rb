@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   #cela nom permet d'utiliser les colonnes dans les autres pages  (donc on evite de mettre :admin pour que personne est la possibilite de mofier cette var)
   attr_accessible :email, :nom, :password, :password_confirmation
 
+  # permet de retrouver tous les microppost d'un user et de détruire ceci lorsque le user est suprimé
+  has_many :microposts , :dependent => :destroy 
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :nom , :presence => true, :length   => { :maximum => 50 }
@@ -43,6 +46,13 @@ before_save :encrypt_password
     user = find_by_id(id)
     # le ? s'appelle un operateur ternaire
     (user && user.salt == cookie_salt) ? user : nil # equivaut à return nil  if user.nil?   return user if user.salt == cookie_salt
+  end
+
+  # Nous permet de recupere toute les micropost avec un utilisateur donnée
+  def feed
+    # C'est un préliminaire. Cf. chapitre 12 pour l'implémentation complète.
+    # le ? est un moyen "d'echapper" l'id pour eviter des pb de securite
+    Micropost.where("user_id = ?", id)
   end
 
 #Correspond à des fonctions de rappel : user.encrypt_password ceci ne fonctionne pas car on est dans la section private
