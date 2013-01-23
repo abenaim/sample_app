@@ -11,10 +11,12 @@ class PagesController < ApplicationController
 
   def contact
   	@titre = "Contact"
+
   end
 
    def about
    	@titre = "About"
+    @todo_items = ["JobSeeker", "JobPoster", "Partenairs", "Employees"]
   end
 
    def help

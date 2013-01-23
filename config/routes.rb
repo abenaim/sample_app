@@ -9,8 +9,8 @@ SampleApp::Application.routes.draw do
   #’/about’ et le route vers l'action about du contrôleur Pages 
   # Avant, c'était plus explicite : nous utilisions get ’pages/about’ pour atteindre le même endroit, mais /about est plus succint
   # De cette maniere dans les vues il suffit d'utiliser about_path => '/about' ,about_url  => 'http://localhost:3000/about'
-   
-   match '/contact', :to => 'pages#contact'
+  #
+   match '/contact', :to => 'pages#contact' # on fait appel à l'action contact du controller pages avec ceci match  '/contact'
    match '/about',   :to => 'pages#about'
    match '/help',    :to => 'pages#help'
    match '/signup',  :to => 'users#new'

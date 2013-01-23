@@ -1,12 +1,12 @@
  	<!-- Cette page un un PARTIAL cad un bout de code que l'on extrait pour l'inclure dans application.html.erb, Les partial commence toujours par _  -->
 
- 	<!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->   
-
-	<!--Pareil que stylesheet_link_tag('blueprint/screen', :media => 'screen') , () optionnel à l'appel de la fonction
-		l'argument :media ressemble à une table de hachage, mais où sont les accolades ? Quand une table de hachage est le dernier argument d'une fonction, ses accolades sont optionnelles identique à stylesheet_link_tag 'blueprint/screen', { :media => 'screen' }: -->
+    
     <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %> 
     <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
     <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
+    <%= stylesheet_link_tag 'bootstrap/bootstrap', :media => 'all' %> 
+    <!--genere link href="/assets/custom.css" media="all" rel="stylesheet" type="text/css" et se dirige dans app/assets/stylesheet/custom.css  -->
     <%= stylesheet_link_tag 'custom', :media => 'screen' %>
+
+	<!--Pareil que stylesheet_link_tag('blueprint/screen', :media => 'screen') , () optionnel à l'appel de la fonction
+	l'argument :media ressemble à une table de hachage, mais où sont les accolades ? Quand une table de hachage est le dernier argument d'une fonction, ses accolades sont optionnelles identique à stylesheet_link_tag 'blueprint/screen', { :media => 'screen' }: -->

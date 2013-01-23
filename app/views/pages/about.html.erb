@@ -1,8 +1,17 @@
-    <h1>À Propos de nous</h1>
-    <p>
-      <a href="http://railstutorial.org/">Le Tutoriel Ruby on Rails</a>
-      est un projet de livre et de screencasts pour apprendre le développement web
-      avec <a href="http://rubyonrails.org/">Ruby on Rails</a>. Ceci
-      est l'Application Exemple du tutoriel.
-    </p>
+<div class="row"> 
+	<div class="span4">
+		<h1>À Propos de nous</h1><hr>
+		<p>Tout sur nous !!</p>
+
+		<div class="well">
+			<% 	
+			i=0
+			@todo_items.each do |t| 
+			%>
+				<li> <%= check_box_tag  "todos_checkbox[]", t %> <%= t%>  </li> </li>
+			<% i=i+1 %>
+			<% end %>
+		</div> <!-- well -->
+	</div> <!-- span4 --> 
+</div> <!-- row -->
  

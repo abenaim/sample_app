@@ -20,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@user = User.find(params[:id])
+  	# params : variable reservé pour les controller qui s'alimente des valeurs de l'url : param[:id] , recupere la valeur passe dans l'url
+    @user = User.find(params[:id]) 
     @microposts = @user.microposts.paginate(:page => params[:id])
   	@titre = @user.nom
   end
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       @titre = "Inscription"
+      # la fonctin render prent un layout en argument (par default application.html.erb) et une action ici new
       render 'new'
     end
   end
